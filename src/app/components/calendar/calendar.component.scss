@@ -1,0 +1,20 @@
+@import '../../../styles.scss';
+
+.td-body-calendar{
+  height: 100px;
+}
+
+.tr-head-calendar {
+  background-color: $blue;
+  th {
+    min-width: 120px;    
+    text-align: center;
+    span {
+      color: $white;
+    }
+  }
+}
+
+.weekend-background {
+  background-color: $light-gray;
+}

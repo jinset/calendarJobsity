@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'calendar';
+  date: Date = new Date();
+  month: number = this.date.getMonth();
+  year: number = this.date.getFullYear();
 }

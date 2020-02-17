@@ -1,0 +1,51 @@
+<div class="modal-body">
+  <div class="modal-header">
+    <h4 *ngIf="isNew">Add new reminder</h4>
+    <h4 *ngIf="!isNew">Edit reminder</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="reminderForm" (ngSubmit)="onSubmit()" class="form-style">
+    <div formGroupName="reminderData">
+      <label for="reminderValue">Remainder</label>
+      <div class="form-group">
+        <textarea 
+          class="form-textarea"
+          maxlength="30"
+          formControlName="reminderValue"> </textarea>
+      </div>
+      <div class="form-group">
+          <ngb-timepicker 
+          formControlName="timeValue"
+          [(ngModel)]="time" 
+          [meridian]="meridian"
+          >
+          </ngb-timepicker>
+      </div>
+      <div class="form-group">
+        <label for="colorValue">Select color</label>
+        <input
+          [style.background]="color"
+          [colorPicker]="color"
+          (colorPickerChange)="color = $event"
+          formControlName="colorValue"
+        />
+      </div>
+      <div class="form-group">
+          <label for="citySelect">Select city</label>
+          <select 
+              (ngModelChange)="dataChanged($event)"
+              formControlName="cityValue"
+              name="citySelect" 
+              id="citySelect" 
+              class="form-control"
+              [(ngModel)]="selectedCity">
+              <option *ngFor="let city of citiesList" [value]="city.name">{{ city.name }}</option>
+          </select>
+          <label>{{weatherValue}}</label>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>

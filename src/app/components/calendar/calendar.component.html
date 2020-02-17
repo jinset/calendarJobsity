@@ -1,0 +1,52 @@
+
+
+<ng-template #content>
+    <app-reminder-modal 
+    [ngStyle]="showModal ? {'display': block}: {'display': none}"
+    (hideModal)="hideModal($event)" 
+    [isNew]="isNew"
+    [reminder]="reminder"
+    [selectedDay]="selectedDay"
+    [month]="month" 
+    [year]="year"
+  >
+  </app-reminder-modal>
+</ng-template>
+<div>
+  <table class="table">
+    <thead>
+      <tr class="tr-head-calendar">
+        <ng-container *ngFor="let day of calendarDays">
+          <th>
+            <span>{{ day.name }}</span>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="table-bordered">
+      <tr class="tr-body-calendar" *ngFor="let tr of trs; let j = index">
+        <ng-container
+          *ngFor="let day of arrayDays.slice(7 * j, 7 * (j + 1)); let i = index"
+        >
+          <td
+            class="td-body-calendar"
+            [ngClass]="{ 'weekend-background': i === 0 }" 
+          >
+            <span (click)="open(content, day, true)">{{ day.day }}</span>
+            <div class="td-body-container" *ngFor="let reminder of day.reminders">
+              <div 
+              class="td-data-container"
+                [style.background-color]="reminder.color" 
+                (click)="open(content, reminder, false)">
+                  {{reminder.reminder}}
+              </div>
+              <div>
+                <button (click)="deleteReminder(reminder.id)">-</button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
