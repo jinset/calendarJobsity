@@ -24,7 +24,7 @@
     "@ngrx/effects": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "date-fns": "^2.9.0",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "ngx-color-picker": "^9.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
